@@ -2,8 +2,9 @@ from flask import Flask, request, render_template
 import pybamm
 import numpy as np
 import os
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 # 배터리 시뮬레이션 함수
 def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_range, temperature):
     # 리튬 이온 배터리 모델 정의
