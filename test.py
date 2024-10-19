@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import pybamm
 import numpy as np
-
+import os
 app = Flask(__name__)
 
 # 배터리 시뮬레이션 함수
@@ -88,6 +88,5 @@ def simulate():
         zip=zip
     )
 
-# Flask 서버 실행
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
