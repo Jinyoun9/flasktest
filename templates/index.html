@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyBaMM 시뮬레이션</title>
+</head>
+<body>
+    <h1>배터리 시뮬레이션</h1>
+    <form action="/simulate" method="post">
+        <label for="active_material">활물질 데이터:</label>
+        <input type="text" id="active_material" name="active_material" value="Chen2020"><br><br>
+
+        <label for="charge_rate">충전 속도 (C-rate):</label>
+        <input type="text" id="charge_rate" name="charge_rate" value="1"><br><br>
+
+        <label for="discharge_rate">방전 속도 (C-rate):</label>
+        <input type="text" id="discharge_rate" name="discharge_rate" value="1"><br><br>
+
+        <label for="voltage_min">최소 전압 (V):</label>
+        <input type="text" id="voltage_min" name="voltage_min" value="3.0"><br><br>
+
+        <label for="voltage_max">최대 전압 (V):</label>
+        <input type="text" id="voltage_max" name="voltage_max" value="4.2"><br><br>
+
+        <label for="temperature">온도 (K):</label>
+        <input type="text" id="temperature" name="temperature" value="298.15"><br><br>
+
+        <input type="submit" value="시뮬레이션 실행">
+    </form>
+</body>
+</html>

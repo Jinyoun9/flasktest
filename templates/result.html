@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Result</title>
+</head>
+<body>
+    <h1>Simulation Results</h1>
+    <table border="1">
+        <tr>
+            <th>Time (h)</th>
+            <th>Voltage (V)</th>
+            <th>Discharge Capacity (A.h)</th>
+            <th>Charge Capacity (A.h)</th>
+            <th>Current (A)</th>
+            <th>State of Charge (SOC)</th>
+            <th>Energy (W.h)</th>
+        </tr>
+        <!-- zip 함수를 사용하여 시간, 전압, 용량, 전류, SOC, 에너지를 출력 -->
+        {% for t, v, cd, cc, cur, s, e in zip(time, voltage, capacity_discharge, capacity_charge, current, soc, energy) %}
+        <tr>
+            <td>{{ t }}</td>
+            <td>{{ v }}</td>
+            <td>{{ cd }}</td>
+            <td>{{ cc }}</td>
+            <td>{{ cur }}</td>
+            <td>{{ s }}</td>
+            <td>{{ e }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Run Another Simulation</a>
+</body>
+</html>
