@@ -3,15 +3,27 @@ import pybamm
 import numpy as np
 import os
 from flask_cors import CORS
+
 app = Flask(__name__)
 CORS(app)
-# 배터리 시뮬레이션 함수
-def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_range, temperature):
+
+def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_range, temperature, time, neg_electrode_capacity, pos_electrode_capacity, lithium_in_electrolyte):
     # 리튬 이온 배터리 모델 정의
     model = pybamm.lithium_ion.DFN()
 
     # 파라미터 값 설정 (활물질 데이터를 반영하여 사용)
     param = pybamm.ParameterValues(active_material)
+
+    # 사용자 입력값을 반영한 추가 파라미터 설정
+    custom_parameters = {
+        "Total lithium in electrolyte [mol]": lithium_in_electrolyte,
+        "Ambient temperature [K]": temperature,
+        # 다른 사용자 정의 파라미터들 추가 가능
+    }
+    
+    # 전극 용량은 직접적으로 존재하지 않으므로, 관련된 다른 파라미터를 조정하는 것이 필요합니다.
+    # 파라미터 업데이트, 기본 파라미터에 없는 파라미터는 check_already_exists=False 사용
+    param.update(custom_parameters, check_already_exists=False)
 
     # 실험 시나리오 설정: 충전/방전 속도, 구동 전압 범위, 온도 반영
     experiment = pybamm.Experiment(
@@ -27,7 +39,7 @@ def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_
 
     # 시뮬레이션 설정
     sim = pybamm.Simulation(model, experiment=experiment, parameter_values=param)
-    sim.solve(t_eval=np.linspace(0, 3600, 1000))  # 시간 간격 설정
+    sim.solve(t_eval=np.linspace(0, time, 1000))  # 시간 간격 설정
 
     # 시뮬레이션 결과에서 다양한 값 추출하여 반환
     solution = sim.solution
@@ -55,6 +67,7 @@ def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_
         "energy": energy.tolist(),
     }
 
+
 # 루트 경로 - 폼을 보여주는 페이지
 @app.route('/')
 def home():
@@ -70,10 +83,14 @@ def simulate():
     voltage_min = float(request.form.get('voltage_min', 3.0))  # 구동 전압의 최소값
     voltage_max = float(request.form.get('voltage_max', 4.2))  # 구동 전압의 최대값
     temperature = float(request.form.get('temperature', 298.15))  # 기본 온도 (K)
+    time = float(request.form.get('time', 3600))  # 시뮬레이션 시간
+    neg_electrode_capacity = float(request.form.get('neg_electrode_capacity', 0.0))  # 음극 용량
+    pos_electrode_capacity = float(request.form.get('pos_electrode_capacity', 0.0))  # 양극 용량
+    lithium_in_electrolyte = float(request.form.get('lithium_in_electrolyte', 0.0))  # 전해질 내 리튬 양
 
     # PyBaMM 시뮬레이션 실행
     result = run_pybaMM_simulation(
-        active_material, charge_rate, discharge_rate, (voltage_min, voltage_max), temperature
+        active_material, charge_rate, discharge_rate, (voltage_min, voltage_max), temperature, time, neg_electrode_capacity, pos_electrode_capacity, lithium_in_electrolyte
     )
 
     # zip 함수를 함께 전달
