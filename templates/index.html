@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyBaMM 시뮬레이션</title>
+    <title>Battery Simulation</title>
 </head>
 <body>
-    <h1>배터리 시뮬레이션</h1>
-    <form action="/simulate" method="post">
+    <h1>PyBaMM 배터리 시뮬레이션</h1>
+    <form action="/simulate" method="POST">
         <label for="active_material">활물질 데이터:</label>
         <input type="text" id="active_material" name="active_material" value="Chen2020"><br><br>
 
@@ -25,6 +25,18 @@
 
         <label for="temperature">온도 (K):</label>
         <input type="text" id="temperature" name="temperature" value="298.15"><br><br>
+
+        <label for="time">시뮬레이션 시간 (초):</label>
+        <input type="text" id="time" name="time" value="3600"><br><br>
+
+        <label for="neg_electrode_capacity">음극 용량 (Ah):</label>
+        <input type="text" id="neg_electrode_capacity" name="neg_electrode_capacity" value="0.0"><br><br>
+
+        <label for="pos_electrode_capacity">양극 용량 (Ah):</label>
+        <input type="text" id="pos_electrode_capacity" name="pos_electrode_capacity" value="0.0"><br><br>
+
+        <label for="lithium_in_electrolyte">전해질 내 리튬 양 (mol):</label>
+        <input type="text" id="lithium_in_electrolyte" name="lithium_in_electrolyte" value="0.0"><br><br>
 
         <input type="submit" value="시뮬레이션 실행">
     </form>
