@@ -37,9 +37,10 @@ def run_pybaMM_simulation(active_material, charge_rate, discharge_rate, voltage_
         temperature=temperature  # 온도 반영
     )
 
+    solver = pybamm.CasadiSolver(mode="safe", dt_max=1e-5)
     # 시뮬레이션 설정
     sim = pybamm.Simulation(model, experiment=experiment, parameter_values=param)
-    sim.solve(t_eval=np.linspace(0, time, 1000))  # 시간 간격 설정
+    sim.solve(solver=solver)  # 시간 간격 설정
 
     # 시뮬레이션 결과에서 다양한 값 추출하여 반환
     solution = sim.solution
