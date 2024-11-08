@@ -4,78 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulation Result</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h1>Simulation Results</h1>
-    <div id="chart"></div>
-
-    <script>
-        // 서버에서 전달받은 데이터를 JavaScript 변수로 전달
-        const time = {{ time | tojson }};
-        const voltage = {{ voltage | tojson }};
-        const capacity_discharge = {{ capacity_discharge | tojson }};
-        const capacity_charge = {{ capacity_charge | tojson }};
-        const current = {{ current | tojson }};
-        const soc = {{ soc | tojson }};
-        const energy = {{ energy | tojson }};
-
-        // Plotly를 사용해 차트를 생성
-        const trace1 = {
-            x: time,
-            y: voltage,
-            mode: 'lines',
-            name: 'Voltage (V)',
-        };
-
-        const trace2 = {
-            x: time,
-            y: capacity_discharge,
-            mode: 'lines',
-            name: 'Discharge Capacity (A.h)',
-        };
-
-        const trace3 = {
-            x: time,
-            y: capacity_charge,
-            mode: 'lines',
-            name: 'Charge Capacity (A.h)',
-        };
-
-        const trace4 = {
-            x: time,
-            y: current,
-            mode: 'lines',
-            name: 'Current (A)',
-        };
-
-        const trace5 = {
-            x: time,
-            y: soc,
-            mode: 'lines',
-            name: 'State of Charge (SOC)',
-        };
-
-        const trace6 = {
-            x: time,
-            y: energy,
-            mode: 'lines',
-            name: 'Energy (W.h)',
-        };
-
-        const data = [trace1, trace2, trace3, trace4, trace5, trace6];
-
-        const layout = {
-            title: 'Battery Simulation Results',
-            xaxis: { title: 'Time (h)', rangeslider: { visible: true } },
-            yaxis: { title: 'Values' },
-            hovermode: 'x unified',  // x축을 따라 모든 값들을 한눈에 표시
-        };
-
-        Plotly.newPlot('chart', data, layout);
-    </script>
-
-    <br>
-    <a href="/">Run Another Simulation</a>
+    <h1>Simulation Result</h1>
+    <div>
+        <img src="data:image/png;base64, {{ img_data }}" alt="Simulation Graphs">
+    </div>
 </body>
 </html>
