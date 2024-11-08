@@ -8,35 +8,56 @@
 <body>
     <h1>PyBaMM 배터리 시뮬레이션</h1>
     <form action="/simulate" method="POST">
-        <label for="active_material">활물질 데이터:</label>
-        <input type="text" id="active_material" name="active_material" value="Chen2020"><br><br>
+        <label for="ambient_temp">주변 온도 (K):</label>
+        <input type="text" id="ambient_temp" name="ambient_temp" value="298.15"><br><br>
 
-        <label for="charge_rate">충전 속도 (C-rate):</label>
-        <input type="text" id="charge_rate" name="charge_rate" value="1"><br><br>
+        <label for="faraday_constant">패러데이 상수 (C.mol<sup>-1</sup>):</label>
+        <input type="text" id="faraday_constant" name="faraday_constant" value="96485"><br><br>
 
-        <label for="discharge_rate">방전 속도 (C-rate):</label>
-        <input type="text" id="discharge_rate" name="discharge_rate" value="1"><br><br>
+        <label for="current_function">전류 함수 (A):</label>
+        <input type="text" id="current_function" name="current_function" value="1.0"><br><br>
 
         <label for="voltage_min">최소 전압 (V):</label>
-        <input type="text" id="voltage_min" name="voltage_min" value="3.0"><br><br>
+        <input type="text" id="voltage_min" name="voltage_min" value="2.5"><br><br>
 
         <label for="voltage_max">최대 전압 (V):</label>
         <input type="text" id="voltage_max" name="voltage_max" value="4.2"><br><br>
 
-        <label for="temperature">온도 (K):</label>
-        <input type="text" id="temperature" name="temperature" value="298.15"><br><br>
+        <label for="cell_capacity">셀 용량 (A.h):</label>
+        <input type="text" id="cell_capacity" name="cell_capacity" value="5.0"><br><br>
 
-        <label for="time">시뮬레이션 시간 (초):</label>
-        <input type="text" id="time" name="time" value="3600"><br><br>
+        <label for="reference_temp">기준 온도 (K):</label>
+        <input type="text" id="reference_temp" name="reference_temp" value="298.15"><br><br>
 
-        <label for="neg_electrode_capacity">음극 용량 (Ah):</label>
-        <input type="text" id="neg_electrode_capacity" name="neg_electrode_capacity" value="0.0"><br><br>
+        <label for="neg_electrode_thickness">음극 두께 (m):</label>
+        <input type="text" id="neg_electrode_thickness" name="neg_electrode_thickness" value="1.0e-5"><br><br>
 
-        <label for="pos_electrode_capacity">양극 용량 (Ah):</label>
-        <input type="text" id="pos_electrode_capacity" name="pos_electrode_capacity" value="0.0"><br><br>
+        <label for="pos_electrode_thickness">양극 두께 (m):</label>
+        <input type="text" id="pos_electrode_thickness" name="pos_electrode_thickness" value="1.0e-5"><br><br>
 
-        <label for="lithium_in_electrolyte">전해질 내 리튬 양 (mol):</label>
-        <input type="text" id="lithium_in_electrolyte" name="lithium_in_electrolyte" value="0.0"><br><br>
+        <label for="neg_electrode_conductivity">음극 전도도 (S.m<sup>-1</sup>):</label>
+        <input type="text" id="neg_electrode_conductivity" name="neg_electrode_conductivity" value="215"><br><br>
+
+        <label for="pos_electrode_conductivity">양극 전도도 (S.m<sup>-1</sup>):</label>
+        <input type="text" id="pos_electrode_conductivity" name="pos_electrode_conductivity" value="0.2"><br><br>
+
+        <label for="neg_electrode_density">음극 밀도 (kg.m<sup>-3</sup>):</label>
+        <input type="text" id="neg_electrode_density" name="neg_electrode_density" value="1700"><br><br>
+
+        <label for="pos_electrode_density">양극 밀도 (kg.m<sup>-3</sup>):</label>
+        <input type="text" id="pos_electrode_density" name="pos_electrode_density" value="3250"><br><br>
+
+        <label for="neg_electrode_volume_fraction">음극 활성 물질 체적 비율:</label>
+        <input type="text" id="neg_electrode_volume_fraction" name="neg_electrode_volume_fraction" value="0.75"><br><br>
+
+        <label for="pos_electrode_volume_fraction">양극 활성 물질 체적 비율:</label>
+        <input type="text" id="pos_electrode_volume_fraction" name="pos_electrode_volume_fraction" value="0.65"><br><br>
+
+        <label for="max_concentration_neg">음극 최대 농도 (mol.m<sup>-3</sup>):</label>
+        <input type="text" id="max_concentration_neg" name="max_concentration_neg" value="32000"><br><br>
+
+        <label for="max_concentration_pos">양극 최대 농도 (mol.m<sup>-3</sup>):</label>
+        <input type="text" id="max_concentration_pos" name="max_concentration_pos" value="62000"><br><br>
 
         <input type="submit" value="시뮬레이션 실행">
     </form>
