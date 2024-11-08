@@ -2,3 +2,4 @@ Flask==3.0.2     # Flask 웹 프레임워크
 pybamm==24.9.0     # 배터리 시뮬레이션을 위한 PyBaMM 라이브러리
 numpy==1.26.4     # 수치 계산을 위한 NumPy 라이브러리
 flask-cors==5.0.0
+matplotlib==3.5.1
