@@ -107,8 +107,9 @@ def simulate():
 
     # Convert the image to a base64 string
     img_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-
-    return render_template('result.html', img_data=img_base64)
+    
+    # Return the image data as JSON
+    return {'imgData': img_base64}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
