@@ -71,32 +71,36 @@ def simulate():
     # Run the simulation
     cycle_cycs, cycle_caps, charge_caps, coulombic_efficiencies = run_pybaMM_simulation(params)
 
-    # Create subplots for the three graphs
-    fig, axs = plt.subplots(3, 1, figsize=(12, 18))
+    # Create a 2x2 grid of subplots
+    fig, axs = plt.subplots(2, 2, figsize=(14, 12))
 
-    # Plot discharge capacity
-    axs[0].plot(cycle_cycs, cycle_caps, marker='x', color='blue', label="Discharge Capacity [Ah/g]")
-    axs[0].set_xlabel("Cycle Number")
-    axs[0].set_ylabel("Discharge Capacity [Ah/g]")
-    axs[0].set_title("Cycle Number vs Discharge Capacity")
-    axs[0].legend()
-    axs[0].grid(True)
+    # Plot discharge capacity in the top-left subplot
+    axs[0, 0].plot(cycle_cycs, cycle_caps, marker='x', color='blue', label="Discharge Capacity [Ah/g]")
+    axs[0, 0].set_xlabel("Cycle Number")
+    axs[0, 0].set_ylabel("Discharge Capacity [Ah/g]")
+    axs[0, 0].set_title("Cycle Number vs Discharge Capacity")
+    axs[0, 0].legend()
+    axs[0, 0].grid(True)
 
-    # Plot charge capacity
-    axs[1].plot(cycle_cycs, charge_caps, marker='o', color='orange', label="Charge Capacity [Ah/g]")
-    axs[1].set_xlabel("Cycle Number")
-    axs[1].set_ylabel("Charge Capacity [Ah/g]")
-    axs[1].set_title("Cycle Number vs Charge Capacity")
-    axs[1].legend()
-    axs[1].grid(True)
+    # Plot charge capacity in the top-right subplot
+    axs[0, 1].plot(cycle_cycs, charge_caps, marker='o', color='orange', label="Charge Capacity [Ah/g]")
+    axs[0, 1].set_xlabel("Cycle Number")
+    axs[0, 1].set_ylabel("Charge Capacity [Ah/g]")
+    axs[0, 1].set_title("Cycle Number vs Charge Capacity")
+    axs[0, 1].legend()
+    axs[0, 1].grid(True)
 
-    # Plot coulombic efficiency
-    axs[2].plot(cycle_cycs, coulombic_efficiencies, marker='^', color='green', label="Coulombic Efficiency [%]")
-    axs[2].set_xlabel("Cycle Number")
-    axs[2].set_ylabel("Coulombic Efficiency [%]")
-    axs[2].set_title("Cycle Number vs Coulombic Efficiency")
-    axs[2].legend()
-    axs[2].grid(True)
+    # Plot coulombic efficiency in the bottom-left subplot
+    axs[1, 0].plot(cycle_cycs, coulombic_efficiencies, marker='^', color='green', label="Coulombic Efficiency [%]")
+    axs[1, 0].set_xlabel("Cycle Number")
+    axs[1, 0].set_ylabel("Coulombic Efficiency [%]")
+    axs[1, 0].set_title("Cycle Number vs Coulombic Efficiency")
+    axs[1, 0].legend()
+    axs[1, 0].grid(True)
+
+    # Leave the bottom-right subplot empty
+    axs[1, 1].axis('off')  # Turn off the axis for the empty plot
+
 
     # Adjust layout and render the plot
     plt.tight_layout()
