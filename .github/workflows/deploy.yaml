@@ -58,6 +58,6 @@ jobs:
             # 새로운 컨테이너 실행
             sudo docker run -d \
               --name ${IMAGE_NAME} \
-              --network compose_default
+              --network compose_default \
               -p 5000:5000 \
               gcr.io/${GCP_PROJECT_ID}/${IMAGE_NAME}:${IMAGE_TAG}
